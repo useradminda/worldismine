@@ -1,0 +1,5 @@
+SocketEvent = {}
+
+
+
+return SocketEvent

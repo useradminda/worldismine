@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>E439935D-B2A2-46AE-856D-2AA408428F33</ProjectGuid>
+    <!--$guid1$-->
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>
+    </StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Usedata\" />
+    <Folder Include="Usedata\Common\" />
+    <Folder Include="Usedata\gm\" />
+    <Folder Include="Usedata\gm\UiLua\" />
+    <Folder Include="Usedata\ui\" />
+    <Folder Include="Usedata\ui\UiLua\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Usedata\Common\ActiveRewardConfig.lua" />
+    <Compile Include="Usedata\Common\ArmyGloryDataSys.lua" />
+    <Compile Include="Usedata\Common\ArmyGlorySys.lua" />
+    <Compile Include="Usedata\Common\ArmyMoneyDataSys.lua" />
+    <Compile Include="Usedata\Common\ArmyMoneySys.lua" />
+    <Compile Include="Usedata\Common\ArmyTemplateConfig.lua" />
+    <Compile Include="Usedata\Common\Astar.lua" />
+    <Compile Include="Usedata\Common\AtlasMsg.lua" />
+    <Compile Include="Usedata\Common\BasePanel.lua" />
+    <Compile Include="Usedata\Common\BattleFieldSys.lua" />
+    <Compile Include="Usedata\Common\BattleFlag.lua" />
+    <Compile Include="Usedata\Common\BattleFlagConfig.lua" />
+    <Compile Include="Usedata\Common\BattleFlagDataSys.lua" />
+    <Compile Include="Usedata\Common\BattleFlagSys.lua" />
+    <Compile Include="Usedata\Common\BoardCastSys.lua" />
+    <Compile Include="Usedata\Common\CalculateRoleProp.lua" />
+    <Compile Include="Usedata\Common\CityNode.lua" />
+    <Compile Include="Usedata\Common\ClinetInfomation.lua" />
+    <Compile Include="Usedata\Common\ClinetSys.lua" />
+    <Compile Include="Usedata\Common\CollectSys.lua" />
+    <Compile Include="Usedata\Common\Comminfo.lua" />
+    <Compile Include="Usedata\Common\ConsignmentConfig.lua" />
+    <Compile Include="Usedata\Common\ConstConfig.lua" />
+    <Compile Include="Usedata\Common\ConsumeRaffleConfig.lua" />
+    <Compile Include="Usedata\Common\ConsumeRaffleSys.lua" />
+    <Compile Include="Usedata\Common\Create3DModel.lua" />
+    <Compile Include="Usedata\Common\DailyMissionConfig.lua" />
+    <Compile Include="Usedata\Common\Debris.lua" />
+    <Compile Include="Usedata\Common\DebrisConfig.lua" />
+    <Compile Include="Usedata\Common\DebrisPackageSys.lua" />
+    <Compile Include="Usedata\Common\DepositItem.lua" />
+    <Compile Include="Usedata\Common\DepositSys.lua" />
+    <Compile Include="Usedata\Common\DouJiangTaiShopConfig.lua" />
+    <Compile Include="Usedata\Common\Equip.lua" />
+    <Compile Include="Usedata\Common\EquipDataConfig.lua" />
+    <Compile Include="Usedata\Common\EquipDataSys.lua" />
+    <Compile Include="Usedata\Common\EquipLvlUpConfig.lua" />
+    <Compile Include="Usedata\Common\EquipQualityUpConfig.lua" />
+    <Compile Include="Usedata\Common\EquipSummonSys.lua" />
+    <Compile Include="Usedata\Common\EquipSys.lua" />
+    <Compile Include="Usedata\Common\EventRewardConfig.lua" />
+    <Compile Include="Usedata\Common\EventTemplateConfig.lua" />
+    <Compile Include="Usedata\Common\EveryDayPreferentialConfig.lua" />
+    <Compile Include="Usedata\Common\EveryWeekPreferentialConfig.lua" />
+    <Compile Include="Usedata\Common\FeatsRewardConfig.lua" />
+    <Compile Include="Usedata\Common\Friend.lua" />
+    <Compile Include="Usedata\Common\FriendSys.lua" />
+    <Compile Include="Usedata\Common\Fund.lua" />
+    <Compile Include="Usedata\Common\FundDataConfig.lua" />
+    <Compile Include="Usedata\Common\FundDataSys.lua" />
+    <Compile Include="Usedata\Common\GameModel.lua" />
+    <Compile Include="Usedata\Common\GameVersion.lua" />
+    <Compile Include="Usedata\Common\Gift.lua" />
+    <Compile Include="Usedata\Common\GiftDataConfig.lua" />
+    <Compile Include="Usedata\Common\GiftPackageSys.lua" />
+    <Compile Include="Usedata\Common\GuideConfig.lua" />
+    <Compile Include="Usedata\Common\GuideDataSys.lua" />
+    <Compile Include="Usedata\Common\GuideSys.lua" />
+    <Compile Include="Usedata\Common\HandBookConfig.lua" />
+    <Compile Include="Usedata\Common\HandBookSys.lua" />
+    <Compile Include="Usedata\Common\handleNet_Game.lua" />
+    <Compile Include="Usedata\Common\HeartJump.lua" />
+    <Compile Include="Usedata\Common\HeroDiscConfig.lua" />
+    <Compile Include="Usedata\Common\HeroPackageSys.lua" />
+    <Compile Include="Usedata\Common\HeroRankListSys.lua" />
+    <Compile Include="Usedata\Common\HeroRanListSys.lua" />
+    <Compile Include="Usedata\Common\HeroShop.lua" />
+    <Compile Include="Usedata\Common\HeroShopConfig.lua" />
+    <Compile Include="Usedata\Common\HonerShopItem.lua" />
+    <Compile Include="Usedata\Common\HonerShopSys.lua" />
+    <Compile Include="Usedata\Common\ItemBase.lua" />
+    <Compile Include="Usedata\Common\ItemDataConfig.lua" />
+    <Compile Include="Usedata\Common\ItemDataSys.lua" />
+    <Compile Include="Usedata\Common\ItemInfo.lua" />
+    <Compile Include="Usedata\Common\ItemPackageSys.lua" />
+    <Compile Include="Usedata\Common\JSON.lua" />
+    <Compile Include="Usedata\Common\LimitDataSys.lua" />
+    <Compile Include="Usedata\Common\LoginData.lua" />
+    <Compile Include="Usedata\Common\MailSys.lua" />
+    <Compile Include="Usedata\Common\MainMissionConfig.lua" />
+    <Compile Include="Usedata\Common\Map.lua" />
+    <Compile Include="Usedata\Common\MapDataSys.lua" />
+    <Compile Include="Usedata\Common\MapSys.lua" />
+    <Compile Include="Usedata\Common\MissionDataSys.lua" />
+    <Compile Include="Usedata\Common\MissionSys.lua" />
+    <Compile Include="Usedata\Common\MonthCardDataConfig.lua" />
+    <Compile Include="Usedata\Common\MonthCardSys.lua" />
+    <Compile Include="Usedata\Common\MusicManagerSys.lua" />
+    <Compile Include="Usedata\Common\MutLanguageConfig.lua" />
+    <Compile Include="Usedata\Common\OfficialDataConfig.lua" />
+    <Compile Include="Usedata\Common\OfficialRwdDataConfig.lua" />
+    <Compile Include="Usedata\Common\OnlineRwdConfig.lua" />
+    <Compile Include="Usedata\Common\OnlineRwdSys.lua" />
+    <Compile Include="Usedata\Common\PalaceElect.lua" />
+    <Compile Include="Usedata\Common\PalaceSys.lua" />
+    <Compile Include="Usedata\Common\PlayerExpConfig.lua" />
+    <Compile Include="Usedata\Common\PlayerInfo.lua" />
+    <Compile Include="Usedata\Common\PlayerInfoSys.lua" />
+    <Compile Include="Usedata\Common\Recharge.lua" />
+    <Compile Include="Usedata\Common\RechargeDataConfig.lua" />
+    <Compile Include="Usedata\Common\RechargeSys.lua" />
+    <Compile Include="Usedata\Common\ResourceConfig.lua" />
+    <Compile Include="Usedata\Common\RewardConfig.lua" />
+    <Compile Include="Usedata\Common\RewardContentSys.lua" />
+    <Compile Include="Usedata\Common\Role.lua" />
+    <Compile Include="Usedata\Common\roleBase.lua" />
+    <Compile Include="Usedata\Common\RoleDataSys.lua" />
+    <Compile Include="Usedata\Common\RoleExpConfig.lua" />
+    <Compile Include="Usedata\Common\RoleInfoConfig.lua" />
+    <Compile Include="Usedata\Common\ShaChangShopConfig.lua" />
+    <Compile Include="Usedata\Common\ShopConfig.lua" />
+    <Compile Include="Usedata\Common\ShopDataSys.lua" />
+    <Compile Include="Usedata\Common\ShopSys.lua" />
+    <Compile Include="Usedata\Common\SignDataConfig.lua" />
+    <Compile Include="Usedata\Common\SignSevenDataConfig.lua" />
+    <Compile Include="Usedata\Common\SignSys.lua" />
+    <Compile Include="Usedata\Common\SignTotalDataConfig.lua" />
+    <Compile Include="Usedata\Common\SkillInfo.lua" />
+    <Compile Include="Usedata\Common\SocketClient.lua" />
+    <Compile Include="Usedata\Common\SocketEvent.lua" />
+    <Compile Include="Usedata\Common\SoldierQualityUpConfig.lua" />
+    <Compile Include="Usedata\Common\SoliderPackageSys.lua" />
+    <Compile Include="Usedata\Common\SoundConfig.lua" />
+    <Compile Include="Usedata\Common\SpecialFavourableSys.lua" />
+    <Compile Include="Usedata\Common\SummonSys.lua" />
+    <Compile Include="Usedata\Common\SystemOpenConfig.lua" />
+    <Compile Include="Usedata\Common\SystemOpenSys.lua" />
+    <Compile Include="Usedata\Common\TeamMakeSys.lua" />
+    <Compile Include="Usedata\Common\TeamSys.lua" />
+    <Compile Include="Usedata\Common\Technology.lua" />
+    <Compile Include="Usedata\Common\TechnologyDataConfig.lua" />
+    <Compile Include="Usedata\Common\TechnologyDataSys.lua" />
+    <Compile Include="Usedata\Common\TechnologySys.lua" />
+    <Compile Include="Usedata\Common\testClient.lua" />
+    <Compile Include="Usedata\Common\TimeControl.lua" />
+    <Compile Include="Usedata\Common\TipsConfig.lua" />
+    <Compile Include="Usedata\Common\TransferCountrySys.lua" />
+    <Compile Include="Usedata\Common\UIstring.lua" />
+    <Compile Include="Usedata\Common\Vip.lua" />
+    <Compile Include="Usedata\Common\VipBuy.lua" />
+    <Compile Include="Usedata\Common\VipBuyDataConfig.lua" />
+    <Compile Include="Usedata\Common\VipBuyDiscConfig.lua" />
+    <Compile Include="Usedata\Common\VipDataConfig.lua" />
+    <Compile Include="Usedata\Common\VipDataSys.lua" />
+    <Compile Include="Usedata\Common\VipSpecailSys.lua" />
+    <Compile Include="Usedata\Common\VipSpecialConfig.lua" />
+    <Compile Include="Usedata\Common\VipSys.lua" />
+    <Compile Include="Usedata\Common\WebEvent.lua" />
+    <Compile Include="Usedata\Common\WorldActivityConfig.lua" />
+    <Compile Include="Usedata\Common\WorldMapDataSys.lua" />
+    <Compile Include="Usedata\Common\WorldMapEventSys.lua" />
+    <Compile Include="Usedata\Common\WorldMapSocketSys.lua" />
+    <Compile Include="Usedata\Common\WorldMapSys.lua" />
+    <Compile Include="Usedata\gm\UiLua\ResourceManager.lua" />
+    <Compile Include="Usedata\ui\UiLua\AmmoConfig.lua" />
+    <Compile Include="Usedata\ui\UiLua\BuffConfig.lua" />
+    <Compile Include="Usedata\ui\UiLua\ChapterConfig.lua" />
+    <Compile Include="Usedata\ui\UiLua\CharacterBase.lua" />
+    <Compile Include="Usedata\ui\UiLua\DataUIInstance.lua" />
+    <Compile Include="Usedata\ui\UiLua\GameMain.lua" />
+    <Compile Include="Usedata\ui\UiLua\LoadingPanel.lua" />
+    <Compile Include="Usedata\ui\UiLua\MainGameUI.lua" />
+    <Compile Include="Usedata\ui\UiLua\MapConfig.lua" />
+    <Compile Include="Usedata\ui\UiLua\PlayerControl.lua" />
+    <Compile Include="Usedata\ui\UiLua\RoleDataConfig.lua" />
+    <Compile Include="Usedata\ui\UiLua\RoleSkillConfig.lua" />
+    <Compile Include="Usedata\ui\UiLua\SoliderQualityUpConfig.lua" />
+    <Compile Include="Usedata\ui\UiLua\TipsPanel.lua" />
+    <Compile Include="Usedata\ui\UiLua\TxConfig.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIBag.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIBattleField.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIBattleFlag.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIChooseWeb.lua" />
+    <Compile Include="Usedata\ui\UiLua\UICollect.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIConsumpGift.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIControl.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIDeposit.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIEquip.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIEveryDaySign.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIFirstRecharge.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIFriend.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIFund.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIGuide.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIHandBook.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIHero.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIHeroRankList.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIHireHero.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIHonorShop.lua" />
+    <Compile Include="Usedata\ui\UiLua\UILogin.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIMail.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIMap.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIMission.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIMonthRight.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIOnLineReward.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIPalace.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIPlayerInfo.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIPlayerUpLvl.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIPopConfirmPanel.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIPopPanel.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIRecharge.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIRwdPop.lua" />
+    <Compile Include="Usedata\ui\UiLua\UISevenDaySign.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIShop.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIShowRewards.lua" />
+    <Compile Include="Usedata\ui\UiLua\UISoldier.lua" />
+    <Compile Include="Usedata\ui\UiLua\UISpecialFavourable.lua" />
+    <Compile Include="Usedata\ui\UiLua\UITeamMake.lua" />
+    <Compile Include="Usedata\ui\UiLua\UITechnology.lua" />
+    <Compile Include="Usedata\ui\UiLua\UITransferCountry.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIVip.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIVipLottery.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIVipSpecial.lua" />
+    <Compile Include="Usedata\ui\UiLua\UIWorldMap.lua" />
+    <Compile Include="Usedata\ui\UiLua\WorldMapConfig.lua" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+</Project>

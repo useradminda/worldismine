@@ -1,0 +1,5 @@
+ArmyMoneyDataSys = {}
+
+
+
+return ArmyMoneyDataSys
