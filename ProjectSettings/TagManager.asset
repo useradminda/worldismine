@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - WorldMap
+  - LittleMap
+  - TeamMake
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: 0
+    uniqueID: 2353674525
+    locked: 0
+  - name: 1
+    uniqueID: 4274065473
+    locked: 0
+  - name: 2
+    uniqueID: 3343364979
+    locked: 0
+  - name: 3
+    uniqueID: 2639388965
+    locked: 0
+  - name: 4
+    uniqueID: 919691275
+    locked: 0
+  - name: 5
+    uniqueID: 3236353795
+    locked: 0
+  - name: 6
+    uniqueID: 151143509
+    locked: 0
+  - name: 7
+    uniqueID: 2646337517
+    locked: 0
