@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &106348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 409912}
+  - 114: {fileID: 11488332}
+  m_Layer: 0
+  m_Name: Lgnodelcsfun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &409912
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106348}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11488332
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 106348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f95cd4d9138cf4a94288fa229a89cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BundleState: -1
+  SceneName: 
+  prefabTestName: label
+  scale: 2
+  propName:
+  - life
+  - attack
+  - magicattack
+  - phydefense
+  - magicdefense
+  - critprob
+  - critpvalue
+  - realattack
+  - movespeed
+  - cdreduce
+  - "\u95EA\u907F"
+  - attackspeed
+  - _canMove
+  propArr:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  basicMapName: BasicScene_2
+  dataConfigFileName: Legend_
+  mapStartIndex: 1
+  mapEndIndex: 1
+  btType: pve
+  isNet: 1
+  mapId: 1410101
+  Enviroment: 
+  HasReadPathConfig: 0
+  PathConfig_lua: PathConfig.lua
+  LocalVersionRecord_n: VersionRecord.txt
+  HasReadVersionRecord: 0
+  InstallZiyuan: InstallZiyuan.zip
+  Usedatastr: Usedata.zip
+  usedata: Usedata
+  delfile: DEL
+  mainluaData: 
+  checkIniBundleFinish: 0
+  GmLoadObjAbList: []
+  nowLoadingAssetNum: 0
+  curBunldType: gm
+  b_clearafter: 0
+  IsInBattle: 0
+  MySdkMag: {fileID: 0}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 106348}
+  m_IsPrefabParent: 1
