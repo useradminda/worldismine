@@ -1,0 +1,21 @@
+{
+    "name": "Nebukam.Beacon",
+    "references": [
+        "Unity.Burst",
+        "Unity.Collections",
+        "Unity.Jobs",
+        "Unity.Mathematics",
+        "Nebukam.Common",
+        "Nebukam.Common.Editor",
+        "Nebukam.Signals",
+        "Nebukam.JobAssist"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}

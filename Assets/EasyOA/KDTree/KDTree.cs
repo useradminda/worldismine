@@ -1,0 +1,399 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+
+namespace AillieoUtils
+{
+    public class KDTree<T> where T: IPositionProvider,new()
+    {
+        public class NodePool
+        {
+            private int index = 0;
+            private readonly List<KDNode> nodes = new List<KDNode>();
+
+            public KDNode GetNew()
+            {
+                if (index >= nodes.Count)
+                {
+                    nodes.Add(new KDNode());
+                }
+                return nodes[index++];
+            }
+            
+            public void Reset()
+            {
+                index = 0;
+            }
+        }
+
+        private int leafSizeMax = 10;
+        private readonly NodePool nodePool = new NodePool();
+        public readonly List<T> managed = new List<T>();
+        private readonly List<int> permutation = new List<int>();
+        private KDNode root;
+        private readonly Queue<KDNode> processingQueue = new Queue<KDNode>();
+
+        private Queue<T> poolAgent = new Queue<T>();
+        public void initPool() 
+        {
+            for (int i = 0;i<3000;i++)
+            {
+                var a = new T();
+                poolAgent.Enqueue(a);
+            }
+        }
+        public T applyAgent()
+        {
+            if (poolAgent.Count == 0)
+            {
+                for (int i = 0;i<100;i++)
+                {
+                    //T node = new T();
+                    //return default(T);
+
+                }
+            }
+            return (T)poolAgent.Dequeue();
+        }
+        public void recycleAgent()
+        {
+            int len = managed.Count;
+            for (int i = 0; i < len; i++)
+            {
+                poolAgent.Enqueue(managed[i]); 
+            }
+
+           
+        }
+        public void Add(T ipp)
+        {
+            managed.Add(ipp);
+        }
+
+        public void Add(IEnumerable<T> ipps)
+        {
+            managed.AddRange(ipps);
+        }
+
+        public void Clear()
+        {
+            managed.Clear();
+        }
+
+        public void SetLeafSizeMax(int newSize)
+        {
+            leafSizeMax = Math.Max(1, newSize);
+        }
+        
+        public void Rebuild()
+        {
+            if(managed.Count == 0)
+            {
+                return;
+            }
+
+            int count = managed.Count;
+            for(int i = 0; i < count; i++) {
+                if (permutation.Count <= i)
+                {
+                    permutation.Add(i);
+                }
+                else
+                {
+                    permutation[i] = i;
+                }
+            }
+
+            nodePool.Reset();
+
+            root = nodePool.GetNew();
+            root.startIndex = 0;
+            root.endIndex = count;
+            FindBounds(out root.min, out root.max);
+
+            
+            processingQueue.Clear();
+            processingQueue.Enqueue(root);
+
+            while (processingQueue.Count > 0)
+            {
+                KDNode node = processingQueue.Dequeue();
+                Split(node);
+            }
+        }
+
+        private void FindBounds(out Vector2 min, out Vector2 max)
+        {
+            min = managed[0].position;
+            max = managed[0].position;
+            foreach (var pp in managed)
+            {
+                min = Vector2.Min(min, pp.position);
+                max = Vector2.Max(max, pp.position);
+            }
+
+
+            //
+            int count = managed.Count;
+            min = managed[0].position;
+            max = managed[0].position;
+
+            int pairs = (count - 1) / 2;
+            // 如果count是奇数 计算 [1] ~ [count-1]
+            // 如果count是偶数 先计算 [1] ~ [count-1-1]
+            for (int i = 0; i < pairs; ++i )
+            {
+                int i0 = i * 2 + 1;
+                int i1 = i * 2 + 2;
+                Vector2 pos0 = managed[i0].position;
+                Vector2 pos1 = managed[i1].position;
+
+                if (pos0.x > pos1.x)
+                {
+                    if (pos1.x < min.x)
+                        min.x = pos1.x;
+
+                    if (pos0.x > max.x)
+                        max.x = pos0.x;
+                }
+                else
+                {
+                    if (pos0.x < min.x)
+                        min.x = pos0.x;
+
+                    if (pos1.x > max.x)
+                        max.x = pos1.x;
+                }
+
+                if (pos0.y > pos1.y)
+                {
+                    if (pos1.y < min.y)
+                        min.y = pos1.y;
+
+                    if (pos0.y > max.y)
+                        max.y = pos0.y;
+                }
+                else
+                {
+                    if (pos0.y < min.y)
+                        min.y = pos0.y;
+
+                    if (pos1.y > max.y)
+                        max.y = pos1.y;
+                }
+            }
+
+            if(count - 1 > pairs * 2)
+            {
+                // count 是偶数 还差一个
+                int last = count - 1;
+                Vector2 posLast = managed[last].position;
+                if (min.x > posLast.x)
+                    min.x = posLast.x;
+
+                if (max.x < posLast.x)
+                    max.x = posLast.x;
+
+                if (min.y > posLast.y)
+                    min.y = posLast.y;
+
+                if (max.y < posLast.y)
+                    max.y = posLast.y;
+            }
+        }
+
+        private void Split(KDNode node)
+        {
+            node.leftLeaf = null;
+            node.rightLeaf = null;
+
+            if (node.endIndex - node.startIndex <= leafSizeMax)
+            {
+                return;
+            }
+
+            FindSplitAxis(node);
+            int splittingIndex = FindSplitIndex(node);
+
+            //Debug.Log($"start={node.startIndex} end={node.endIndex} split={splittingIndex}");
+
+            KDNode leftLeaf = nodePool.GetNew();
+            leftLeaf.min = node.min;
+            Vector2 leftMax = node.max;
+            leftMax[node.splitAxis] = node.splitPos;
+            leftLeaf.max = leftMax;
+            leftLeaf.startIndex = node.startIndex;
+            leftLeaf.endIndex = splittingIndex;
+            node.leftLeaf = leftLeaf;
+            
+            KDNode rightLeaf = nodePool.GetNew();
+            rightLeaf.max = node.max;
+            Vector2 rightMin = node.min;
+            rightMin[node.splitAxis] = node.splitPos;
+            rightLeaf.min = rightMin;
+            rightLeaf.startIndex = splittingIndex;
+            rightLeaf.endIndex = node.endIndex;
+            node.rightLeaf = rightLeaf;
+            
+            processingQueue.Enqueue(leftLeaf);
+            processingQueue.Enqueue(rightLeaf);
+        }
+
+        private void FindSplitAxis(KDNode node)
+        {
+            // 比较快的方法 选择范围大的维度
+            Vector2 range = node.max - node.min;
+            Vector2.Axis splitAxis = Vector2.Axis.X;
+            if (range.y > range.x)
+            {
+                splitAxis = Vector2.Axis.Y;
+            }
+
+            node.splitAxis = splitAxis;
+        }
+        
+        private int FindSplitIndex(KDNode node, int retryOffset = 0)
+        {
+            // 取第一个 并将其后移 最终保证 左边都比它小 右边都比它大 有点类似于快速排序第一步
+            int start = node.startIndex + retryOffset;
+            int end = node.endIndex - 1;
+            Vector2.Axis splitAxis = node.splitAxis;
+            int pivot = permutation[start];
+            while (start < end)
+            {
+                while (start < end && managed[permutation[end]].position[splitAxis] >= managed[pivot].position[splitAxis])
+                {
+                    --end;
+                }
+                permutation[start] = permutation[end];
+                while (start < end && managed[permutation[start]].position[splitAxis] <= managed[pivot].position[splitAxis])
+                {
+                    ++start;
+                }
+                permutation[end] = permutation[start];
+            }
+            permutation[start] = pivot;
+            
+            int foundIndex = start;
+            
+            if (foundIndex == node.startIndex || foundIndex == node.endIndex)
+            {
+                // 运气不太好 出现了极限情况
+                if (node.startIndex + retryOffset < node.endIndex - 1)
+                {
+                    // Debug.LogError($"再试一次    start={node.startIndex}  off={retryOffset}  end={node.endIndex}");
+                    foundIndex = FindSplitIndex(node, retryOffset + 1);
+                    return foundIndex;
+                }
+            }
+            
+            node.splitPos = managed[permutation[foundIndex]].position[splitAxis];
+            return foundIndex;
+        }
+        
+        public IEnumerable<T> QueryInRange(Vector2 center, float radius)
+        {
+            List<T> list = new List<T>();
+            QueryInRange(center, radius, list);
+            return list;
+        }
+
+        public void QueryInRange(Vector2 center, float radius, ICollection<T> toFill)
+        {
+            if (managed.Count == 0)
+            {
+                return;
+            }
+
+            processingQueue.Clear();
+            toFill.Clear();
+
+            float radiusSq = radius * radius;
+            
+            processingQueue.Enqueue(root);
+
+            while (processingQueue.Count > 0)
+            {
+                KDNode node = processingQueue.Dequeue();
+                if(node == null)
+                {
+                    int i = 0;
+                }    
+                if (node != null && node.leftLeaf == null && node.rightLeaf == null)
+                {
+                    // leaf
+                    for (int i = node.startIndex; i < node.endIndex; ++i)
+                    {
+                        int index = permutation[i];
+                        if (index >= managed.Count)
+                        {
+                            int k = 0;
+                            k = k + 1;
+                            // 暂时先屏蔽掉
+                            ///UnityEngine.Debug.LogError("发生严重错误");
+                            continue;
+                        }
+                        float distance = Vector2.SqrMagnitude(managed[index].position - center);
+                        if (Vector2.SqrMagnitude(managed[index].position - center) <= radiusSq)
+                        {
+                            toFill.Add(managed[index]);
+                        }
+                    }
+                }
+                else
+                {
+                    if (node != null && node.leftLeaf != null)
+                    {
+                        // todo 可以缓存更多信息 加速叶节点的查找
+                        if (IsKDNodeInRange(node.leftLeaf, center, radiusSq))
+                        {
+                            processingQueue.Enqueue(node.leftLeaf);
+                        }
+                    }
+                    if (node != null && node.rightLeaf != null)
+                    {
+                        if (IsKDNodeInRange(node.rightLeaf, center, radiusSq))
+                        {
+                            processingQueue.Enqueue(node.rightLeaf);
+                        }
+                    }
+                }
+            }
+        }
+
+        private bool IsKDNodeInRange(KDNode node, Vector2 center, float radiusSq)
+        {
+            Vector2 nodeCenter = node.min;// (node.max + node.min) * 0.5f;
+            Vector2 nodeRange = node.max - node.min;
+            Vector2 v = Vector2.Max(nodeCenter - center, -(nodeCenter - center));
+            Vector2 u = Vector2.Max(v - nodeRange,Vector2.zero);
+            return u.sqrMagnitude < radiusSq;
+        }
+        
+        public void Visit(Action<KDNode> func)
+        {
+            if(func == null)
+            {
+                return;
+            }
+            VisitNode(func, root);
+        }
+
+        private void VisitNode(Action<KDNode> func, KDNode node)
+        {
+            if(node == null)
+            {
+                return;
+            }
+
+            func(node);
+
+            if(node.leftLeaf != null && node.rightLeaf != null)
+            {
+                VisitNode(func, node.leftLeaf);
+                VisitNode(func, node.rightLeaf);
+            }
+        }
+
+    }
+}

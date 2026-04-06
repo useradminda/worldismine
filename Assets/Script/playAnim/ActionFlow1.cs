@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionFlow : MonoBehaviour
+public class ActionFlow1 : MonoBehaviour
 {
     MaterialPropertyBlock mPropertyBlock;
     Renderer render;

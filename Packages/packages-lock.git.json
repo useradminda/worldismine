@@ -1,0 +1,29 @@
+{
+    "dependencies": [
+        {
+            "name": "com.nebukam.common",
+            "hash": "c7b249233ba7d62fe40b086951c689770af1ed7b",
+            "url": "https://github.com/Nebukam/com.nebukam.common.git#0.1.6"
+        },
+        {
+            "name": "com.nebukam.beacon",
+            "hash": "1cdff36a5d751018d611fb65a7e48ce8e00b3f2f",
+            "url": "https://github.com/Nebukam/com.nebukam.beacon.git#0.0.5"
+        },
+        {
+            "name": "com.nebukam.orca",
+            "hash": "ff23268afe0e57c87a77931fdc4428470d1df80c",
+            "url": "https://github.com/Nebukam/com.nebukam.orca.git#1.1.8"
+        },
+        {
+            "name": "com.nebukam.signals",
+            "hash": "f629818ad011d0eaa0f92c67f0e53d5d2f2db45f",
+            "url": "https://github.com/Nebukam/com.nebukam.signals.git#1.0.1"
+        },
+        {
+            "name": "com.nebukam.job-assist",
+            "hash": "a6891eed1a051793b4b3b4524bc1f956ebbb70bf",
+            "url": "https://github.com/Nebukam/com.nebukam.job-assist.git#1.1.5"
+        }
+    ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "com.nebukam.signals",
+  "version": "1.0.1",
+  "displayName": "N:Signals",
+  "description": "Micro library for targeted messaging & signals, inspired by Robert Penner.",
+  "unity": "2019.3",
+  "unityRelease": "17f1",
+  "documentationUrl":"https://nebukam.github.io/docs/unity/com.nebukam.signals/",
+  "keywords": [
+    "Messaging",
+    "Events",
+    "Signals"
+  ],
+  "category": "Utils",
+  "author": {
+    "name": "Timothe Lapetite",
+    "email": "nebukam@gmail.com",
+    "url": "https://github.com/Nebukam/com.nebukam.signals.git"
+  },
+  "samples": [
+    {
+      "displayName": "HowTo",
+      "description": "Reference code showing how to setup and use N:Signals.",
+      "path": "Samples~/HowTo"
+    }
+  ]
+}

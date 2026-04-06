@@ -28,7 +28,7 @@ public class ActionManager : MonoBehaviour
             {
                 GameObject gob = Instantiate<GameObject>(spawnPrefab, new Vector3(i * 2f, 0, j * 2f), Quaternion.identity);
                 gob.transform.eulerAngles = new Vector3(-90, 0, 0);
-                ActionFlow af = gob.AddComponent<ActionFlow>();
+                ActionFlow1 af = gob.AddComponent<ActionFlow1>();
                 int randomIndex =  Random.Range(0, materials.Count);
                 af.SetActionInfo(actionTimeList[randomIndex], materials[randomIndex], mPropertyBlock, 0.5f * j);
             }
