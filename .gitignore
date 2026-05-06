@@ -2,10 +2,9 @@
 Temp
 Logs
 *.vsconfig
-Assembly-CSharp.csproj
-Assembly-CSharp-Editor.csproj
-Assembly-CSharp-firstpass.csproj
 WorldIsMine.sln
 .vs
 obj
 UserSettings/Layouts
+*.csproj
+*.sln
