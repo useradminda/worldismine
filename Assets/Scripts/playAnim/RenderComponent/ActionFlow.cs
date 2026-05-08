@@ -1,41 +1,17 @@
 using UnityEngine;
 using System.Collections.Generic;
+
 [System.Serializable]
 [ExecuteInEditMode]
 public class ActionFlow : MonoBehaviour
 {
-    public GameObject RunEffect;
-    private GameObject runEffect;
-    private GameObject RunGameObject
-    {
-        get
-        {
-            if (RunEffect != null)
-            {
-                if (runEffect == null)
-                {
-                    if (Application.isPlaying == true)
-                    {
-                        //runEffect = RunEffect.GetCatchEntityObject();
-                        //runEffect.transform.parent = transform;
-                        //runEffect.transform.localPosition = Vector3.zero;
-                        //runEffect.transform.localScale = Vector3.one;
-                    }
-                }
-                return runEffect;
-            }
-            return null;
-        }
-    }
-
-
     private RenderComponent renderComponenter;
     protected RenderComponent RenderComponenter
     {
         get
         {
             if (renderComponenter == null)
-                renderComponenter = gameObject.GetComponent<RenderComponent>();
+                renderComponenter = gameObject.AddComponent<RenderComponent>();
             return renderComponenter;
         }
     }
@@ -53,101 +29,45 @@ public class ActionFlow : MonoBehaviour
         }
     }
 
-   
+    // 当前动画时间
+    public float CurrentAnimTime;
+    // 动画播放速率
+    private float animPlaySpeedValue = 1;
 
-    private float attackTime
-    {
-        get
-        {
-            return 0;
-        }
-    }
-
-
-    public float currentTime;
-
-
-    public float AnimTime = 1f;
-    private float animBeilv = 1;
-
-    public ActionData CurrentActionData => currentActionData;
+    // 当前播放的动画
     private ActionData currentActionData;
+    public ActionData CurrentActionData => currentActionData;
 
-
+    // 动作信息
     public List<ActionData> ActionDataList = new List<ActionData>();
     public Dictionary<EActionType, ActionData> ActionDataDic = new Dictionary<EActionType, ActionData>();
 
     // Start is called before the first frame update
     void Awake()
-    {             
-        initActionData();
-        PlayAction(EActionType.Idle);
-        //SetActionInfo(AnimTime, null);
-    }
-
-    private void OnEnable()
     {
-        if(ActionDataList.Count == 0)
-        {
-            ActionData _data = new ActionData() { ActionType = EActionType.Idle, ActionTime = 1 };
-            ActionDataList.Add(_data);
-            _data = new ActionData() { ActionType = EActionType.Run, ActionTime = 1.5f };
-            ActionDataList.Add(_data);
-            _data = new ActionData() { ActionType = EActionType.Attack, ActionTime = 1 };
-            ActionDataList.Add(_data);
-            _data = new ActionData() { ActionType = EActionType.Die, ActionTime = 1 };
-            ActionDataList.Add(_data);
-            _data = new ActionData() { ActionType = EActionType.Victory, ActionTime = 2 };
-            ActionDataList.Add(_data);
-        }
+        initActionDataDic();
+        PlayAction(EActionType.attack);
     }
 
     private void Start()
     {
-        //PlayAction(EActionType.Victory);
     }
-
-    public void SetActionInfo(float totalTime, Material material)
+    
+    // 设置动画信息
+    public void SetActionData(EActionType actionType, float animLen, Material mat)
     {
-        currentTime = Random.Range(0, 1.5f);
-
-        // propertyBlock = new MaterialPropertyBlock();
-        // render = GetComponentInChildren<Renderer>();
-        // if(material != null)
-        // render.sharedMaterial = material;
-        //render.GetPropertyBlock(mPropertyBlock);
-
-        RenderComponenter.SetPropertyBlockFloat("_AnimLen", totalTime);
-        RenderComponenter.SetPropertyBlockFloat("_CurrentTime", currentTime);
-
-
-        //propertyBlock.SetFloat("_AnimLen", totalTime);
-        //propertyBlock.SetFloat("_CurrentTime", currentTime);
-        // �ܻ�����
-        //propertyBlock.SetColor("_SlashColor", new Color(0.7f,0.7f,0.7f,1f));
-        // ����
-        //propertyBlock.SetFloat("_ICEState", 1);
-
-
-        // mPropertyBlock.SetTexture("_AnimMap", tex); // ����������texture
-        //render.SetPropertyBlock(propertyBlock);
+        ActionData _data = new ActionData() { ActionType = actionType, AnimLen = animLen, Mat = mat };
+        ActionDataList.Add(_data);
     }
 
-    // 
-    public void ActionFreeze(float _animBeilv)
+    // 清空动画信息
+    public void ClearActionData()
     {
-        animBeilv = 1f/_animBeilv;
-        setActionAnimLenth(currentActionData);
+        ActionDataDic.Clear();
+        ActionDataList.Clear();
     }
 
-    public void ActionExitFreeze()
-    {
-        animBeilv = 1;
-        setActionAnimLenth(currentActionData);
-    }
-
-
-    // ����һ������
+    // 播放一个动画
     public void PlayAction(EActionType _actionType)
     {
         if(ActionDataDic != null && ActionDataDic.ContainsKey(_actionType))
@@ -163,67 +83,62 @@ public class ActionFlow : MonoBehaviour
             {
                 RenderComponenter.SetMat(_actionData.Mat);
             }
-            setActionDataTime(currentActionData);
             setActionAnimLenth(currentActionData);
-            if (_actionType == EActionType.Run)
+            if (_actionType == EActionType.run)
             {
-                currentTime = Random.Range(0, 1f);
-                RenderComponenter.SetPropertyBlockFloat("_CurrentTime", currentTime);
+                CurrentAnimTime = Random.Range(0, 1f);
+                RenderComponenter.SetPropertyBlockFloat("_CurrentTime", CurrentAnimTime);
                 RenderComponenter.SetPropertyBlockFloat("_TimeSinceLevelLoad", Time.time);
             }
             else
             {
-                currentTime = 0;
-                RenderComponenter.SetPropertyBlockFloat("_CurrentTime", currentTime);
+                CurrentAnimTime = 0;
+                RenderComponenter.SetPropertyBlockFloat("_CurrentTime", CurrentAnimTime);
                 RenderComponenter.SetPropertyBlockFloat("_TimeSinceLevelLoad", Time.time);
-            }
-            if(_actionType == EActionType.Run)
-            {
-                if (RunGameObject)
-                    RunGameObject.SetActive(true);
-            }
-            else
-            {
-                if (RunGameObject)
-                    RunGameObject.SetActive(false);
-            }
-        }
-    }
-    private void setActionDataTime(ActionData _actionData)
-    {
-        if (_actionData.ActionType == EActionType.Attack)
-        {
-            _actionData.ActionTime = attackTime;
+            }          
         }
     }
 
-    private void setActionAnimLenth(ActionData _actionData)
-    {
-        float _animLenth = _actionData.ActionTime * animBeilv;
-        RenderComponenter.SetPropertyBlockFloat("_AnimLen", _animLenth);
-    }
-
-    public float GetActionTime(EActionType _actionType)
+    // 获取动作时长
+    public float GetAnimLen(EActionType _actionType)
     {
         if(ActionDataDic != null && ActionDataDic.ContainsKey(_actionType))
         {
             ActionData _actionData = ActionDataDic[_actionType];
-            return _actionData.ActionTime;
+            return _actionData.AnimLen;
         }
         return 1;
     }
 
-    // Update is called once per frame
+    // 进入冰冻
+    public void ActionFreeze(float speedValue)
+    {
+        animPlaySpeedValue = 1f / speedValue;
+        setActionAnimLenth(currentActionData);
+    }
 
-    private void initActionData()
+    // 退出冰冻
+    public void ActionExitFreeze()
+    {
+        animPlaySpeedValue = 1;
+        setActionAnimLenth(currentActionData);
+    }
+
+    // 设置动画时长
+    private void setActionAnimLenth(ActionData _actionData)
+    {
+        float _animLenth = _actionData.AnimLen * animPlaySpeedValue;
+        RenderComponenter.SetPropertyBlockFloat("_AnimLen", _animLenth);
+    }
+
+    private void initActionDataDic()
     {
         for(int i = 0; i < ActionDataList.Count; i++)
         {
-            ActionDataDic.Add(ActionDataList[i].ActionType, ActionDataList[i]);           
+            if(!ActionDataDic.ContainsKey(ActionDataList[i].ActionType))
+                ActionDataDic.Add(ActionDataList[i].ActionType, ActionDataList[i]);           
         }
     }
-
-
 
     private void animatorPlay(string _stateName)
     {
@@ -237,16 +152,19 @@ public class ActionFlow : MonoBehaviour
 public class ActionData
 {
     public Material Mat;
-    public float ActionTime;
+    public float AnimLen;
     public EActionType ActionType = EActionType.None;
 }
+
 [System.Serializable]
 public enum EActionType
 {
     None,
-    Run,
-    Attack,
-    Die,
-    Idle,
-    Victory,
+    run,
+    attack,
+    die,
+    wait,
+    skill,
+    show,
+    victory,
 }
