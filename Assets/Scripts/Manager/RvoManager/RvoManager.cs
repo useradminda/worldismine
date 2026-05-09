@@ -63,13 +63,11 @@ public class RvoManager : Singleton<RvoManager>, IManager
         return agent;
     }
 
-
     public Agent AddAgent(Agent agent)
     {
         waitingAddList.Add(agent);
         return agent;
     }
-
 
     public void AfterUpdate()
     {
