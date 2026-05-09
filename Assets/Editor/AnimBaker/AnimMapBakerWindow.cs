@@ -1,14 +1,9 @@
-﻿/*
- * Created by jiadong chen
- * https://jiadong-chen.medium.com/
- */
+﻿
 using UnityEngine;
 using UnityEditor;
 using System.IO;
 using UnityEngine.Rendering;
 using System.Collections.Generic;
-using System.Xml.Linq;
-using System.Net.NetworkInformation;
 
 public class AnimMapBakerWindow : EditorWindow {
 
@@ -60,9 +55,6 @@ public class AnimMapBakerWindow : EditorWindow {
     {
         EditorWindow.GetWindow(typeof(AnimMapBakerWindow));
         _baker = new AnimMapBaker();
-        //var shaderName = GraphicsSettings.renderPipelineAsset != null ? URPShader : BuiltInShader;
-        //_animMapShader = Shader.Find(shaderName);
-        //createDirectory();
     }
 
    

@@ -11,6 +11,8 @@ public class ActionFlow : MonoBehaviour
         get
         {
             if (renderComponenter == null)
+                renderComponenter = gameObject.GetComponent<RenderComponent>();
+            if (renderComponenter == null)
                 renderComponenter = gameObject.AddComponent<RenderComponent>();
             return renderComponenter;
         }

@@ -30,17 +30,14 @@ public struct AnimData
     private SkinnedMeshRenderer _horseSkin;
 
     public List<MeshFilter> MeshList;    ////
-
     public List<AnimationState> AnimationClips => _animClips;
     public List<AnimationState> HorseAnimClips => _horseClips;
     public int MapWidth => _mapWidth;
     public string Name => _name;
 
- 
-
     #endregion
 
-    public AnimData(Animation anim, Animation horseAnim, SkinnedMeshRenderer smr, SkinnedMeshRenderer horseSkin, string goName, GameObject _gob)////(Animation anim, SkinnedMeshRenderer smr, string goName, GameObject _gob) ////(Animation anim, SkinnedMeshRenderer smr, string goName)
+    public AnimData(Animation anim, Animation horseAnim, SkinnedMeshRenderer smr, SkinnedMeshRenderer horseSkin, string goName, GameObject _gob)
     {
         _vertexCount = smr.sharedMesh.vertexCount;      
         _mapWidth = Mathf.NextPowerOfTwo(_vertexCount);
@@ -53,7 +50,7 @@ public struct AnimData
         _name = goName;
 
 
-        MeshList = new List<MeshFilter>();    ////
+        MeshList = new List<MeshFilter>();   
         _vertexCount = 0;
         RecursivelyPrintTransformNames(_gob.transform);
         for(int i = 0; i < MeshList.Count; i++)
@@ -63,7 +60,7 @@ public struct AnimData
         _vertexCount += smr.sharedMesh.vertexCount;
         if (horseSkin != null)
             _vertexCount += _horseSkin.sharedMesh.vertexCount;
-        _mapWidth = Mathf.NextPowerOfTwo(_vertexCount); ////
+        _mapWidth = Mathf.NextPowerOfTwo(_vertexCount);
     }
 
     #region METHODS

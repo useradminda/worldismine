@@ -22,7 +22,7 @@ using UnityEngine;
 
 
 
-//// ¸öÌåµ¥Î»
+//// ä¸ªä½“å•ä½
 //public class UnitInfo
 //{
 //    public Nebukam.ORCA.Agent Agenter;
@@ -48,7 +48,7 @@ using UnityEngine;
 //        friendType = _friendType;
 //    }
 
-//    // ÅĞ¶ÏÊÇ·ñËÀÍö
+//    // åˆ¤æ–­æ˜¯å¦æ­»äº¡
 //    public bool UnitBDead()
 //    {
 //        return MonsterCompoent.MonsterBDead();
@@ -74,7 +74,7 @@ using UnityEngine;
 //        }
 //        public float agentRadius => agent.radius;
 
-//        // »áÔÚ»ñÈ¡»º´æµÄÊ±ºò¸üĞÂ£¨ÔÚinitKdTreeµÄÊ±ºò) ºÃÏñ²»×¼È·
+//        // ä¼šåœ¨è·å–ç¼“å­˜çš„æ—¶å€™æ›´æ–°ï¼ˆåœ¨initKdTreeçš„æ—¶å€™) å¥½åƒä¸å‡†ç¡®
 //        //public MonsterBaseComponent MonsterCompoent;
 
 
@@ -83,7 +83,7 @@ using UnityEngine;
 //            this.color = selected ? Color.blue : Color.white;
 //        }
 //    }
-public class RvoManager : MonoBehaviour
+public class RvoManagerHistory : MonoBehaviour
 {
     private void Awake()
     {
@@ -116,9 +116,9 @@ public class RvoManager : MonoBehaviour
 //        private KDTree<RvoKDState> tree;
 //        private HashSet<RvoKDState> queryResult = new HashSet<RvoKDState>();
 
-//        // ³õÊ¼Ê¿±øÊıÁ¿
+//        // åˆå§‹å£«å…µæ•°é‡
 //        public Dictionary<EFriendType, int> OriginalSoldierDic = new Dictionary<EFriendType, int>();
-//        // Õ½ËğÊıÁ¿
+//        // æˆ˜æŸæ•°é‡
 //        public Dictionary<EFriendType, int> HurtSoldierDic = new Dictionary<EFriendType, int>();
 
 
@@ -162,7 +162,7 @@ public class RvoManager : MonoBehaviour
 
 //        }
 
-//        // ³õÊ¼»¯Ò»Ğ©Õ½¶·ĞèÒªµÄÎï¼ş
+//        // åˆå§‹åŒ–ä¸€äº›æˆ˜æ–—éœ€è¦çš„ç‰©ä»¶
 //        public void InitBattleInfo()
 //        {
 //            CyclePool<GameObject>.Clear();
@@ -181,14 +181,14 @@ public class RvoManager : MonoBehaviour
 //            createKDTree();
 //        }
 
-//        // ¿ªÊ¼Õ½¶·
+//        // å¼€å§‹æˆ˜æ–—
 //        public void StartBattle()
 //        {
 //            GameStop = false;
 //        }
 
 
-//        // ÉèÖÃ¾²Ì¬ÕÏ°­Îï
+//        // è®¾ç½®é™æ€éšœç¢ç‰©
 //        private void setStaticObstacles()
 //        {
 //            if(ObstacleManagerGob == null)
@@ -219,7 +219,7 @@ public class RvoManager : MonoBehaviour
 //            }
 //        }
 
-//        // ÉèÖÃ±ß½çÕÏ°­
+//        // è®¾ç½®è¾¹ç•Œéšœç¢
 //        private void createBorderObstacles()
 //        {
 //            ObstacleComponent borderObstacle = ObstacleManagerGob.transform.Find("BorderObstacle").GetComponent<ObstacleComponent>();
@@ -272,13 +272,13 @@ public class RvoManager : MonoBehaviour
 //        }
 
 
-//        // ´´½¨ÓÑ¾ü
+//        // åˆ›å»ºå‹å†›
 //        public virtual void CreateFriend(SoldierInfo _soldierInfo, GameObject _prefab, Vector3 _bornPoint, EFriendType _eFriendType, EUnitType _unitType, Vector3? _forward = null, Vector3? _targetPoint = null)
 //        {
 //            SoldierSettings _soldierSettings = SoldierSettingsManager.GameSettingsManagerIns.GetSoldierTable(_eFriendType);
 //            if(_soldierSettings == null)
 //            {
-//                Debug.LogError(_eFriendType.ToString() + "ÅäÖÃÎª¿Õ");
+//                Debug.LogError(_eFriendType.ToString() + "é…ç½®ä¸ºç©º");
 //                return;
 //            }
 //            Prop _prop = new Prop(_soldierInfo, _eFriendType, _soldierSettings);
@@ -306,13 +306,13 @@ public class RvoManager : MonoBehaviour
 //            _unitInfo.SetFrindType(_eFriendType);
 //        }
 
-//        // ´´½¨µĞ¾ü
+//        // åˆ›å»ºæ•Œå†›
 //        public virtual UnitInfo CreateEnemy(Vector3 _bornPoint, EEnemyType _eEnemyType, int _monsterBody, Vector3? _forward = null)
 //        {
 //            MonsterSettings _monsterSettings = MonsterSettingsManager.MonsterSettingsManagerIns.GetMonsterTable(_eEnemyType);
 //            if (_monsterSettings == null)
 //            {
-//                Debug.LogError(_eEnemyType.ToString() + "ÅäÖÃÎª¿Õ");
+//                Debug.LogError(_eEnemyType.ToString() + "é…ç½®ä¸ºç©º");
 //                return null;
 //            }
 //            GameObject _prefab = _monsterSettings.Prefab;
@@ -321,13 +321,13 @@ public class RvoManager : MonoBehaviour
 //            return _unitInfo;
 //        }
 
-//        // ´´½¨µĞÈËBoss
+//        // åˆ›å»ºæ•ŒäººBoss
 //        public virtual void CreateEenemyBoss(Vector3 _bornPoint, BossInfo _bossInfo)
 //        {
 //            MonsterSettings _monsterSettings = MonsterSettingsManager.MonsterSettingsManagerIns.GetMonsterTable(_bossInfo.EnemyType);
 //            if (_monsterSettings == null)
 //            {
-//                Debug.LogError(_bossInfo.EnemyType.ToString() + "ÅäÖÃÎª¿Õ");
+//                Debug.LogError(_bossInfo.EnemyType.ToString() + "é…ç½®ä¸ºç©º");
 //                return;
 //            }
 //            GameObject _prefab = _monsterSettings.Prefab;
@@ -335,13 +335,13 @@ public class RvoManager : MonoBehaviour
 //            UnitInfo _unitInfo = CreateUnitAtPoint(_bornPoint, _monsterSettings.BodyRadius, _monsterSettings.MoveSpeed, _prefab, EUnitType.Enemy, _prefab.name, _prop);
 //        }
 
-//        // ¿½±´µ±Ç°½ÇÉ«Ê¿±øÊôĞÔµ½µĞÈËÉíÉÏ
+//        // æ‹·è´å½“å‰è§’è‰²å£«å…µå±æ€§åˆ°æ•Œäººèº«ä¸Š
 //        public void CopyToBossEnemyHumanArmy(Vector3 _bornPoint, SoldierInfo _soldierInfo, EEnemyType _eEnemyType)
 //        {
 //            MonsterSettings _monsterSettings = MonsterSettingsManager.MonsterSettingsManagerIns.GetMonsterTable(_eEnemyType);
 //            if (_monsterSettings == null)
 //            {
-//                Debug.LogError(_eEnemyType.ToString() + "ÅäÖÃÎª¿Õ");
+//                Debug.LogError(_eEnemyType.ToString() + "é…ç½®ä¸ºç©º");
 //                return;
 //            }
 //            GameObject _prefab = _monsterSettings.Prefab;
@@ -404,7 +404,7 @@ public class RvoManager : MonoBehaviour
 //        {
 //            MonsterBaseComponent mbComp = _transform.GetComponent<MonsterBaseComponent>();
 //            if (mbComp == null)
-//                Debug.LogError("ÑÏÖØ´íÎó È±ÉÙmonsterBaseComponent");
+//                Debug.LogError("ä¸¥é‡é”™è¯¯ ç¼ºå°‘monsterBaseComponent");
 
 //            UnitInfo _unitInfo = new UnitInfo(_agent, mbComp);
 //            Vector3 _targetPoint = _unitType == EUnitType.Enemy ? enemyTargetPoint.position : friendTargetPoint.position;
@@ -413,7 +413,7 @@ public class RvoManager : MonoBehaviour
 //            return _unitInfo;
 //        }
 
-//        // É¾³ıÄ³¸öÓÑ·½ÀàĞÍµÄËùÓĞÕ½¶·½ÇÉ«ĞÅÏ¢
+//        // åˆ é™¤æŸä¸ªå‹æ–¹ç±»å‹çš„æ‰€æœ‰æˆ˜æ–—è§’è‰²ä¿¡æ¯
 //        public void DeleteFriendDataByFriendType(EFriendType _friendType)
 //        {
 //            List<Agent> _agents = new List<Agent>();
@@ -452,7 +452,7 @@ public class RvoManager : MonoBehaviour
 //        }     
 
 
-//        #region ´´½¨Õ½³¡¿É»÷ÆÆÎï¼ş
+//        #region åˆ›å»ºæˆ˜åœºå¯å‡»ç ´ç‰©ä»¶
 //        public void CreateTreasure(Vector3 _createPoint, GameObject _prefab)
 //        {
 //            Prop _prop = new Prop();
@@ -475,13 +475,13 @@ public class RvoManager : MonoBehaviour
 //            initKDTree();
 //        }
 
-//        // ´´½¨½¨Ôì·ÏĞæ
+//        // åˆ›å»ºå»ºé€ åºŸå¢Ÿ
 //        public void CreateRuins(string _ruinsName, Vector3 _bornPoint, Vector3 _forward)
 //        {
 //            RuinsSettings _ruinsSettings = RuinsSettingsManager.Instance.SearchRuinsSettingsByName(_ruinsName);
 //            if (_ruinsSettings == null)
 //            {
-//                Debug.LogError(_ruinsName + "ÅäÖÃÎª¿Õ");
+//                Debug.LogError(_ruinsName + "é…ç½®ä¸ºç©º");
 //                return;
 //            }
 //            GameObject _prefab = _ruinsSettings.RuinsPrefab;
@@ -496,13 +496,13 @@ public class RvoManager : MonoBehaviour
 
 //        #endregion
 
-//        #region ´´½¨ÏİÚå
+//        #region åˆ›å»ºé™·é˜±
 //        public UnitInfo CreateTrap(Vector3 _bornPoint, string _trapName, Vector3 _forward)
 //        {
 //            BuildingSettings _buildingSettings = BuildingSettingsManager.Ins.SearchBuildingSettingsByName(_trapName);
 //            if (_buildingSettings == null)
 //            {
-//                Debug.LogError(_trapName + "ÅäÖÃÎª¿Õ");
+//                Debug.LogError(_trapName + "é…ç½®ä¸ºç©º");
 //                return null;
 //            }
 //            GameObject _prefab = _buildingSettings.BuildingPrefabFriend;
@@ -522,13 +522,13 @@ public class RvoManager : MonoBehaviour
 //        #endregion
 
 //        #region
-//        // ´´½¨ÎÒ·½½¨Öş
+//        // åˆ›å»ºæˆ‘æ–¹å»ºç­‘
 //        public virtual UnitInfo CreateFriendBuild(Vector3 _bornPoint, string _buildingName, Vector3 _forward)
 //        {
 //            BuildingSettings _buildingSettings = BuildingSettingsManager.Ins.SearchBuildingSettingsByName(_buildingName);
 //            if (_buildingSettings == null)
 //            {
-//                Debug.LogError(_buildingName + "ÅäÖÃÎª¿Õ");
+//                Debug.LogError(_buildingName + "é…ç½®ä¸ºç©º");
 //                return null;
 //            }
 
@@ -546,7 +546,7 @@ public class RvoManager : MonoBehaviour
 //        #endregion
 
 
-//        //// ÖØĞÂ¼ÆËãÊ¿±øÊôĞÔ
+//        //// é‡æ–°è®¡ç®—å£«å…µå±æ€§
 //        //public void ReCalculateSoldierPro()
 //        //{
 //        //    foreach(var so in friendDic)
@@ -593,8 +593,8 @@ public class RvoManager : MonoBehaviour
 //            }
 //        }
 
-//        #region AiSearch (AiËÑË÷)
-//        // »ñÈ¡µĞ¶ÔÕóÓª×î½üµÄµ¥Î»(ÎŞÊÓËÑË÷·¶Î§)
+//        #region AiSearch (Aiæœç´¢)
+//        // è·å–æ•Œå¯¹é˜µè¥æœ€è¿‘çš„å•ä½(æ— è§†æœç´¢èŒƒå›´)
 //        public UnitInfo GetNearestOppositeUnit(Vector3 _currentPoint, EUnitType _eUnitType)
 //        {
 //            float _minSqrDis = 0;
@@ -623,7 +623,7 @@ public class RvoManager : MonoBehaviour
 //            return _unitInfoer;
 //        }
 
-//        // »ñÈ¡ÑªÁ¿×îÉÙµÃÓÑ¾ü
+//        // è·å–è¡€é‡æœ€å°‘å¾—å‹å†›
 //        public UnitInfo GetLowestHpOurSide(EUnitType _eUnitType)
 //        {
 //            long _minHp = 0;
@@ -653,7 +653,7 @@ public class RvoManager : MonoBehaviour
 //        }
 
 //        private List<UnitInfo> notFullHpSoldierList = new List<UnitInfo>();
-//        // »ñÈ¡·ÇÂúÑªµÃÓÑ¾ü
+//        // è·å–éæ»¡è¡€å¾—å‹å†›
 //        public UnitInfo GetNotFullHpOurSide(EUnitType _eUnitType)
 //        {
 //            notFullHpSoldierList.Clear();
@@ -675,7 +675,7 @@ public class RvoManager : MonoBehaviour
 //            return _unitInfoer;
 //        }
 
-//        // ²éÕÒÔÚËÑË÷·¶Î§ÄÚµÄ×î½üµĞÈË
+//        // æŸ¥æ‰¾åœ¨æœç´¢èŒƒå›´å†…çš„æœ€è¿‘æ•Œäºº
 //        private HashSet<RvoKDState> serchQueryResult = new HashSet<RvoKDState>();
 //        public UnitInfo GetNearestOppositeUnitBySearchDis(Vector3 _currentPoint, EUnitType _eUnitType, float _searchRadius)
 //        {
@@ -742,7 +742,7 @@ public class RvoManager : MonoBehaviour
 //            return _unitInfoer;
 //        }
 
-//        // ¸ù¾İËÑË÷¾àÀë ²éÕÒÔÚËÑË÷·¶Î§ÄÚµÄµĞÈË(·Ç×î½ü)
+//        // æ ¹æ®æœç´¢è·ç¦» æŸ¥æ‰¾åœ¨æœç´¢èŒƒå›´å†…çš„æ•Œäºº(éæœ€è¿‘)
 //        private HashSet<RvoKDState> serchQueryResult2 = new HashSet<RvoKDState>();
 //        private List<UnitInfo> randomList = new List<UnitInfo>();
 //        public UnitInfo GetOppositeUnitBySearchDis(Vector3 _currentPoint, EUnitType _eUnitType, float _searchRadius)
@@ -802,7 +802,7 @@ public class RvoManager : MonoBehaviour
 //            return null;
 //        }
 
-//        // Ëæ»ú»ñÈ¡Ò»¸öµĞ¶ÔÕóÓªµ¥Î»
+//        // éšæœºè·å–ä¸€ä¸ªæ•Œå¯¹é˜µè¥å•ä½
 //        public UnitInfo GetRandomOppositeUnit(EUnitType _eUnitType)
 //        {
 //            UnitInfo _unitInfoer = null;
@@ -902,9 +902,9 @@ public class RvoManager : MonoBehaviour
 //                ////}
 
 //                agent.maxNeighbors = 20;   
-//                //agent.neighborDist = 0.1f; // ±Ü¿ªÆäËûÖÇÄÜÌåµÄ¾àÀë
-//                agent.timeHorizon = 0.1f;   // ¾àÀëÆäËû´úÀí¼ì²é
-//                agent.timeHorizonObst = 4f; // ËÙ¶ÈÔ½Ğ¡£¬Õâ¸öÖµÔ½´ó£¬²Å²»»á´©Í¸²»¿ÉĞĞ×ßÇøÓò£¬¾àÀëÕÏ°­
+//                //agent.neighborDist = 0.1f; // é¿å¼€å…¶ä»–æ™ºèƒ½ä½“çš„è·ç¦»
+//                agent.timeHorizon = 0.1f;   // è·ç¦»å…¶ä»–ä»£ç†æ£€æŸ¥
+//                agent.timeHorizonObst = 4f; // é€Ÿåº¦è¶Šå°ï¼Œè¿™ä¸ªå€¼è¶Šå¤§ï¼Œæ‰ä¸ä¼šç©¿é€ä¸å¯è¡Œèµ°åŒºåŸŸï¼Œè·ç¦»éšœç¢
 
 //                agent.radiusObst = agent.radius;
 
@@ -959,7 +959,7 @@ public class RvoManager : MonoBehaviour
 //            tree.initPool();
 //        }
 
-//        // ´æÒ»¸öÉ¾³ıÊ±¿ÌÖ´ĞĞµÄÂß¼­£¬±ÈÈç×Ô±¬±ø£¬±¬Õ¨ÓÍÍ°
+//        // å­˜ä¸€ä¸ªåˆ é™¤æ—¶åˆ»æ‰§è¡Œçš„é€»è¾‘ï¼Œæ¯”å¦‚è‡ªçˆ†å…µï¼Œçˆ†ç‚¸æ²¹æ¡¶
 //        List<MonsterBaseComponent> needDestoryMonsterList = new List<MonsterBaseComponent>();
 
 //        private int humanCount = 0;
@@ -1052,7 +1052,7 @@ public class RvoManager : MonoBehaviour
 //        }
 
 
-//        // Í¬Ò»¸öÖ¡ÄÚÉ¾³ıµôkdtreeµÄÖµ£¬µ«ÊÇÃ»ÓĞupdateKDTree £¬updateÊÇÔÚÏÂÒ»ÕëÅÜµÄ£¬ËùÒÔ»á±¨´íÎó£¬ºóĞø¿ÉÄÜ°Ñµ±Ç°Ö¡´òËÀµÄËùÓĞ¹ÖÎïËÑ¼¯Ò»ÏÂ£¬ÔÚÏÂÒ»ÕëÈ¥É¾³ıagentsÁĞ±íÈ»ºóÔÚupdatekdtree
+//        // åŒä¸€ä¸ªå¸§å†…åˆ é™¤æ‰kdtreeçš„å€¼ï¼Œä½†æ˜¯æ²¡æœ‰updateKDTree ï¼Œupdateæ˜¯åœ¨ä¸‹ä¸€é’ˆè·‘çš„ï¼Œæ‰€ä»¥ä¼šæŠ¥é”™è¯¯ï¼Œåç»­å¯èƒ½æŠŠå½“å‰å¸§æ‰“æ­»çš„æ‰€æœ‰æ€ªç‰©æœé›†ä¸€ä¸‹ï¼Œåœ¨ä¸‹ä¸€é’ˆå»åˆ é™¤agentsåˆ—è¡¨ç„¶ååœ¨updatekdtree
 //        public void TouchSomeThing(UVector2 _touchV2, float _radius, BulletType _bulletType, Transform _hitTransform, EUnitType _attackUnitType, EBuffType _buffType, int _attackDamage, int _buffDamage = 0, bool _protectPlayer = false)
 //        {
 //            if (GameStop == true)
@@ -1061,7 +1061,7 @@ public class RvoManager : MonoBehaviour
 //                return;           
 
 //            bool _rebuildTree = false;
-//            // ÉäÏß»÷ÖĞµÄÄ¿±ê´¦Àí
+//            // å°„çº¿å‡»ä¸­çš„ç›®æ ‡å¤„ç†
 //            MonsterBaseComponent _hitMbComp = null;
 //            if (_hitTransform != null && _hitTransform.gameObject.layer != 29)
 //            {
@@ -1075,7 +1075,7 @@ public class RvoManager : MonoBehaviour
 //                }
 //            }
 
-//            // ÉäÏß»÷ÖĞºó·¶Î§´¦Àí
+//            // å°„çº¿å‡»ä¸­åèŒƒå›´å¤„ç†
 //            _rebuildTree = _rebuildTree | doRangeDamage(_touchV2, _radius, _bulletType, _hitMbComp, _attackUnitType, _buffType, _attackDamage, _buffDamage, _protectPlayer);
 //            if(_rebuildTree)
 //            {
@@ -1089,21 +1089,21 @@ public class RvoManager : MonoBehaviour
 //                return;
 
 
-//            //// Ê¤Àû
+//            //// èƒœåˆ©
 //            //if (enemyDic.Count <= 0)
 //            //{
 //            //    WinGame();
 //            //    return;
 //            //}
 
-//            //// Ê§°Ü
+//            //// å¤±è´¥
 //            //if (FriendDoor != null && FriendDoor.UnitBDead() ==  true)
 //            //{
 //            //    LoseGame();
 //            //    return;
 //            //}
 
-//            //// ¹¥³ÇÕ½Ê§°Ü
+//            //// æ”»åŸæˆ˜å¤±è´¥
 //            //if(BattleDataProxy.Ins.BattleType == EBattleType.AttackCity)
 //            //{               
 //            //    if(friendDic.Count <= 0)
@@ -1113,9 +1113,9 @@ public class RvoManager : MonoBehaviour
 //            //    return;
 //            //}
 
-//            //initKDTree  »¹ºÃ
+//            //initKDTree  è¿˜å¥½
 //            //initKDTree();
-//            //updateKDTreeºÜºÄÊ±
+//            //updateKDTreeå¾ˆè€—æ—¶
 //            //updateKDTree();
 
 //        }
@@ -1132,7 +1132,7 @@ public class RvoManager : MonoBehaviour
 
 //        protected virtual bool OnJudgeLoseGame()
 //        {
-//            // Ê§°Ü
+//            // å¤±è´¥
 //            if (FriendDoor != null && FriendDoor.UnitBDead() == true)
 //            {
 //                LoseGame();
@@ -1254,23 +1254,23 @@ public class RvoManager : MonoBehaviour
 //            return _dead;
 //        }
 
-//        // µ¥¸öÉËº¦
+//        // å•ä¸ªä¼¤å®³
 //        public bool DoSingleDamage(MonsterBaseComponent _mbComp, int _attackDamageValue, BulletType _bulletType, UVector2 _touchV2, EBuffType _buffType, int _buffDamage = 0, bool _protectPlayer = false)
 //        {           
-//            // ÖÎÁÆ
+//            // æ²»ç–—
 //            if(_buffType == EBuffType.Health)
 //            {
 //                _mbComp.DoMonsterDamage(_attackDamageValue);
 //                return false;
 //            }
-//            // ÉËº¦
+//            // ä¼¤å®³
 //            _mbComp.DoMonsterDamage(-_attackDamageValue);
 //            _mbComp.DamageSlash();
 //            if (_protectPlayer == true && _mbComp.EUnitType == EUnitType.Enemy)
 //                BattleScoreDataSystem.Ins.ProtecterHitMonster();
 //            if (_mbComp.MonsterBDead())
 //            {
-//                // »÷É±¼ÇÂ¼
+//                // å‡»æ€è®°å½•
 //                if(_mbComp.EUnitType == EUnitType.Enemy)
 //                    BattleScoreDataSystem.Ins.SetProtectKillMonster(_mbComp.transform.position, _protectPlayer);                
 //                _mbComp.DestorySelf(_bulletType, _touchV2);
@@ -1279,7 +1279,7 @@ public class RvoManager : MonoBehaviour
 //            }
 //            else
 //            {                         
-//                // Ìí¼Óbuff
+//                // æ·»åŠ buff
 //                if (_buffType != EBuffType.None)
 //                {
 //                    float _buffBeiLv = 0.3f;
@@ -1300,7 +1300,7 @@ public class RvoManager : MonoBehaviour
 //            return false;
 //        }
 
-//        // ·¶Î§¼ÓÑª
+//        // èŒƒå›´åŠ è¡€
 //        private HashSet<RvoKDState> addBloodQueryResult = new HashSet<RvoKDState>();
 //        public void DoRangeAddBlood(UVector2 _touchV2, float _radius, int _addBloodValue, GameObject _objectBoomPrefab)
 //        {
@@ -1343,18 +1343,18 @@ public class RvoManager : MonoBehaviour
 //            }
 //        }
 
-//        // ¸ù¾İÕóÓªÅĞ¶ÏÊÇ·ñ¿ÉÒÔ¹¥»÷µĞÈË
+//        // æ ¹æ®é˜µè¥åˆ¤æ–­æ˜¯å¦å¯ä»¥æ”»å‡»æ•Œäºº
 //        private bool canDoDamage(EUnitType _beHurtUnitType, EUnitType _attackUnitType, bool _protecter, EBuffType _buffType)
 //        {   
 
-//            // ÖÎÁÆÀàĞÍ£¬¹¥»÷ºÍÊÜ»÷ÊÇÍ¬Ò»¸öÕóÓª
+//            // æ²»ç–—ç±»å‹ï¼Œæ”»å‡»å’Œå—å‡»æ˜¯åŒä¸€ä¸ªé˜µè¥
 //            if(_buffType == EBuffType.Health && _beHurtUnitType == _attackUnitType)
 //            {
 //                return true;
 //            }
 //            if(_protecter == true)
 //            {
-//                // Ö÷½ÇµÄ¹¥»÷
+//                // ä¸»è§’çš„æ”»å‡»
 //                if(_beHurtUnitType == EUnitType.ForthParty)
 //                {
 //                    return true;
@@ -1367,7 +1367,7 @@ public class RvoManager : MonoBehaviour
 //                    return false;
 //                }
 //            }
-//            // µÚÈı·½µ¥Î»Ö»×÷ÓÃÓÚµĞÈË
+//            // ç¬¬ä¸‰æ–¹å•ä½åªä½œç”¨äºæ•Œäºº
 //            if (_attackUnitType == EUnitType.ThirdParty && _beHurtUnitType == EUnitType.Enemy)
 //            {
 //                return true;
@@ -1384,7 +1384,7 @@ public class RvoManager : MonoBehaviour
 //            return false;
 //        }
 
-//        // »ñÈ¡¶ÔÃæÕóÓª
+//        // è·å–å¯¹é¢é˜µè¥
 //        private EUnitType getOppositeUnitType(EUnitType _unitType)
 //        {
 //            if (_unitType == EUnitType.Friend)
