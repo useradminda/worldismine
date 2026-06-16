@@ -24,6 +24,7 @@ public class RvoManager : Singleton<RvoManager>, IManager
         simulation.plane = Nebukam.Common.AxisPair.XY;
         simulation.agents = Agents;
     }
+
     public void ManagerUpdate()
     {
         if (simulation != null)
@@ -37,6 +38,7 @@ public class RvoManager : Singleton<RvoManager>, IManager
         if(simulation != null && simulation.TryComplete())
         {
 
+            addWaitingList();
         }
     }
 
@@ -56,20 +58,23 @@ public class RvoManager : Singleton<RvoManager>, IManager
         simulation = null;
     }
 
-    public Agent AddAgent(float3 bornPoint, float3 forward, float radius)
-    {
-        Agent agent = AgentFactory.CreateAgent(bornPoint, forward, radius);
-        waitingAddList.Add(agent);
-        return agent;
-    }
+    // 给RVO增加一个agent(等待添加的列表) 
+    //public Agent AddAgent(float3 bornPoint, float3 forward, float radius, float maxSpeed)
+    //{
+    //    Agent agent = UnitFactory.CreateAgent(bornPoint, forward, radius, maxSpeed);
+    //    waitingAddList.Add(agent);
+    //    return agent;
+    //}
 
+    // 给RVO增加一个agent(等待添加的列表) 
     public Agent AddAgent(Agent agent)
     {
         waitingAddList.Add(agent);
         return agent;
     }
 
-    public void AfterUpdate()
+    // 添加等待入队列表
+    private void addWaitingList()
     {
         for (int i = 0; i < waitingAddList.Count; i++)
         {

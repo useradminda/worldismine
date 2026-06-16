@@ -71,6 +71,7 @@ public class KDTreeManager : Singleton<KDTreeManager>, IManager
         }
     }
 
+    // 增加待入KDInfo
     public void AddWaitingKDInfo(UnitBase unit)
     {
         KDInfo kdInfo = mKDTree.applyAgent();
@@ -92,6 +93,7 @@ public class KDTreeManager : Singleton<KDTreeManager>, IManager
         mKDTree.Add(kdInfo);
     }
 
+    // 晚一帧加入
     private void addWaitingKDInfoList()
     {
         for(int i = 0; i < waitingAddList.Count; i++)

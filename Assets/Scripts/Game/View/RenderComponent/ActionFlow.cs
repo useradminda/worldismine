@@ -1,6 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+/// <summary>
+/// 动作组件
+/// </summary>
 [System.Serializable]
 [ExecuteInEditMode]
 public class ActionFlow : MonoBehaviour
@@ -10,10 +13,7 @@ public class ActionFlow : MonoBehaviour
     {
         get
         {
-            if (renderComponenter == null)
-                renderComponenter = gameObject.GetComponent<RenderComponent>();
-            if (renderComponenter == null)
-                renderComponenter = gameObject.AddComponent<RenderComponent>();
+            renderComponenter = gameObject.GetOrAddComponent<RenderComponent>();
             return renderComponenter;
         }
     }
@@ -42,13 +42,14 @@ public class ActionFlow : MonoBehaviour
 
     // 动作信息
     public List<ActionData> ActionDataList = new List<ActionData>();
+    // 动作信息map，空间换查询时间
     public Dictionary<EActionType, ActionData> ActionDataDic = new Dictionary<EActionType, ActionData>();
 
     // Start is called before the first frame update
     void Awake()
     {
         initActionDataDic();
-        PlayAction(EActionType.attack);
+        PlayAction(EActionType.wait);
     }
 
     private void Start()
@@ -150,6 +151,7 @@ public class ActionFlow : MonoBehaviour
 
 }
 
+// 动画信息
 [System.Serializable]
 public class ActionData
 {
